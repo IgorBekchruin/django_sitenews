@@ -1,0 +1,90 @@
+{% load static %}
+{% load news_tags %}
+{% load last_news %}
+{% get_category as categories %}
+{% get_last_post as post %}
+<!-- Header -->
+<header id="header">
+    <!-- Nav -->
+    <div id="nav">
+        <!-- Main Nav -->
+        <div id="nav-fixed">
+            <div class="container">
+                <!-- logo -->
+                <div class="nav-logo">
+                    <a href="{% url 'home' %}" class="logo"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                </div>
+                <!-- /logo -->
+
+                <!-- nav -->
+                <ul class="nav-menu nav navbar-nav">
+                    <li class="cat-1"><a href="{% url 'post_list' %}">Новости</a></li>
+                    <li class="cat-2"><a href="{% url 'popular_post_list' %}">Популярные статьи</a></li>
+                    {% for c in categories %}
+                        <li class="cat-3"><a href="{{ c.get_absolute_url }}">{{c.title}}</a></li>
+                    {% endfor %}
+                </ul>
+                <!-- /nav -->
+
+                <!-- search & aside toggle -->
+                <div class="nav-btns">
+                    <button class="aside-btn"><i class="fa fa-bars"></i></button>
+                    <button class="search-btn"><i class="fa fa-search"></i></button>
+                    <div class="search-form">
+                        <input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
+                        <button class="search-close"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /search & aside toggle -->
+            </div>
+        </div>
+        <!-- /Main Nav -->
+
+        <!-- Aside Nav -->
+        <div id="nav-aside">
+            <!-- nav -->
+            <div class="section-row">
+                <ul class="nav-aside-menu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="#">Войти</a> | <a href="#">Регистрация</a></li>
+                    <li><a href="contact.html">Обратная связь</a></li>
+                    <li><a href="about.html">О проекте</a></li>
+                </ul>
+            </div>
+            <!-- /nav -->
+
+            <!-- widget posts -->
+            <div class="section-row">
+                <h3>Последние новости</h3>
+                <div class="post post-widget">
+                    {% for p in post %}
+                    <a class="widget-img" href="{{ p.get_absolute_url }}"><img src="{{ p.image.url }}" alt="" ></a>
+                    <div class="post-body">
+                        <h5 class="post-title"><a href="{{ p.get_absolute_url }}">{{p.title}}</a></h3>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- /widget posts -->
+
+            <!-- social links -->
+            <div class="section-row">
+                <h3>Подпишись на нас</h3>
+                <ul class="nav-aside-social">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                </ul>
+            </div>
+            <!-- /social links -->
+
+            <!-- aside nav close -->
+            <button class="nav-aside-close"><i class="fa fa-times"></i></button>
+            <!-- /aside nav close -->
+        </div>
+        <!-- Aside Nav -->
+    </div>
+    <!-- /Nav -->
+</header>
+<!-- /Header -->

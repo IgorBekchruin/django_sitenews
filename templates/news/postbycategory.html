@@ -1,0 +1,101 @@
+{% extends 'base.html' %} 
+
+{% block title %}Категория{% endblock title %} 
+
+{% block bar %}
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h1>Категория: <a href="{{ cat.get_absolute_url}}">{{ cat.title}}</a></h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Header -->
+{% endblock bar %}
+
+{% block main %}
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <!-- post -->
+                    {% for p in post %}
+                    <div class="col-md-12">
+                        <div class="post post-row">
+                            <a class="post-img" href="{{ p.get_absolute_url }}"><img src="{{ p.image.url }}" alt=""/></a>
+                            <div class="post-body">
+                                <div class="post-meta">
+                                    <a class="post-category cat-2" href="{{ p.category.get_absolute_url}}">{{ p.category.title}}</a>
+                                    <span class="post-date">{{ p.created_at|date:"SHORT_DATE_FORMAT" }}</span>
+                                </div>
+                                <h3 class="post-title">
+                                    <a href="{{ p.get_absolute_url }}">{{ p.title}}</a>
+                                </h3>
+                                <p>{{ p.text|truncatewords:25|safe}}</p>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /post -->
+                    {% endfor %}
+                    {% include 'pagination.html' %}
+
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <!-- catagories -->
+                {% include 'category.html' %}
+                <!-- /catagories -->
+
+                <!-- tags -->
+                <div class="aside-widget">
+                    <div class="section-title">
+                        <h2>Тэги:</h2>
+                    </div>
+                    <div class="tags-widget">
+                        <ul>
+                            <li><a href="#">Chrome</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">Tutorial</a></li>
+                            <li><a href="#">Backend</a></li>
+                            <li><a href="#">JQuery</a></li>
+                            <li><a href="#">Design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                            <li><a href="#">Website</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /tags -->
+
+                <!-- archive -->
+                <div class="aside-widget">
+                    <div class="section-title">
+                        <h2>Архив:</h2>
+                    </div>
+                    <div class="archive-widget">
+                        <ul>
+                            <li><a href="#">Jan 2018</a></li>
+                            <li><a href="#">Feb 2018</a></li>
+                            <li><a href="#">Mar 2018</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /archive -->
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+{% endblock main %}
+

@@ -1,0 +1,4 @@
+mysite\users\__pycache__\
+mysite\news\__pycache__\
+mysite\mysite\__pycache__\
+*.pyc

@@ -1,0 +1,52 @@
+{% extends 'base.html' %} 
+
+{% block title %}Популярные статьи{% endblock title %} 
+
+{% block bar %}
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h1>Популярные статьи</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Header -->
+{% endblock bar %}
+
+{% block main %}
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- post -->
+            {% for p in popular_post %}
+            <div class="col-md-4">
+                <div class="post">
+                    <a class="post-img" href="blog-post.html"><img src="{{p.image.url}}" alt=""/></a>
+                    <div class="post-body">
+                        <div class="post-meta">
+                            <a class="post-category cat-1" href="category.html">{{p.category.title}}</a>
+                            <span class="post-date">{{p.created_at|date:"SHORT_DATE_FORMAT"}}</span>
+                        </div>
+                        <h4 class="post-title">
+                            <a href="{{ p.get_absolute_url }}">{{p.title}}</a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% include 'pagination.html' %}
+            <!-- /post -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+{% endblock main %}

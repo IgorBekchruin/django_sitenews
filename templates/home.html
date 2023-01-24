@@ -1,0 +1,152 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Главная{% endblock title %} 
+
+{% block main %}
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!--
+        <div class="row">
+            <div class="col-md-6">
+                <div class="post post-thumb">
+                    <a class="post-img" href="blog-post.html"><img src="./img/post-1.jpg" alt=""/></a>
+                    <div class="post-body">
+                        <div class="post-meta">
+                            <a class="post-category cat-2" href="category.html">JavaScript</a>
+                            <span class="post-date">March 27, 2018</span>
+                        </div>
+                            <h3 class="post-title">
+                                <a href="blog-post.html">Chrome Extension Protects Against JavaScript-Based CPU Side-Channel Attacks</a>
+                            </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+         -->
+
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>Последние новости</h2>
+                </div>
+            </div>
+            <!-- post -->
+            {% for p in post %}
+            <div class="col-md-4">
+                <div class="post">
+                    <a class="post-img" href="{{ p.get_absolute_url }}"><img src="{{p.image.url}}" alt=""/></a>
+                    <div class="post-body">
+                        <div class="post-meta">
+                            <a class="post-category cat-1" href="{{p.category.get_absolute_url}}">{{p.category.title}}</a>
+                            <span class="post-date">{{p.created_at|date:"SHORT_DATE_FORMAT"}}</span>
+                        </div>
+                        <h4 class="post-title">
+                            <a href="{{ p.get_absolute_url }}">{{p.title}}</a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- /post -->
+
+            <div class="col-md-12">
+                <div class="section-row">
+                    <a href="{% url 'post_list' %}"><button class="primary-button center-block">Читать больше</button></a>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+</div>
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title">
+                            <h2>Популярные статьи</h2>
+                        </div>
+                    </div>
+                    <!-- post -->
+                    <div class="col-md-12">
+                    {% include 'popular.html' %}
+                    </div>
+                    <!-- /post -->
+                    <div class="col-md-12">
+                        <div class="section-row">
+                            <a href="{% url 'popular_post_list' %}"><button class="primary-button center-block">Читать больше</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+
+                <!-- catagories -->
+                {% include 'category.html' %}
+                <!-- /catagories -->
+
+                <!-- tags -->
+                <div class="aside-widget">
+						<!-- ad -->
+						<div class="aside-widget text-center">
+							<a href="#" style="display: inline-block;margin: auto;">
+								<img class="img-responsive" src="{% static 'img/ad-1.jpg' %}" alt="">
+							</a>
+						</div>
+						<!-- /ad -->
+
+
+                    <div class="section-title">
+                        <h2>Тэги:</h2>
+                    </div>
+                    <div class="tags-widget">
+                        <ul>
+                            <li><a href="#">Chrome</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">Tutorial</a></li>
+                            <li><a href="#">Backend</a></li>
+                            <li><a href="#">JQuery</a></li>
+                            <li><a href="#">Design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                            <li><a href="#">Website</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /tags -->
+                <!-- archive -->
+				<div class="aside-widget">
+                    <div class="section-title">
+                        <h2>Архив</h2>
+                    </div>
+                    <div class="archive-widget">
+                        <ul>
+                            <li><a href="#">2022</a></li>
+                            <li><a href="#">2021</a></li>
+                            <li><a href="#">2020</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /archive -->
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+{% endblock main %}
+

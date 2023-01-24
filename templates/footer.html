@@ -1,0 +1,73 @@
+{% load news_tags %}
+{% get_category as categories %}
+
+<!-- Footer -->
+<footer id="footer">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-5">
+                <div class="footer-widget">
+                    <div class="footer-logo">
+                        <a href="index.html" class="logo"><img src="./img/logo.png" alt=""></a>
+                    </div>
+
+                    <div class="footer-copyright">
+                        <span>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+<p>Все права защищены</p>
+<p>Create by <a href="/" target="_blank">Bekchurin Igor</a></p>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">О нас</h3>
+                            <ul class="footer-links">
+                                <li><a href="about.html">О проекте</a></li>
+                                <li><a href="contact.html">Обратная связь</a></li>
+                                <li><a href="#">Сотрудничество</a></li>
+                                <li><a href="contact.html">Размещение рекламы</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">Категории</h3>
+                            <ul class="footer-links">
+                                {% for c in categories %}
+                                <li><a href="{{ c.get_absolute_url }}">{{c.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="footer-widget">
+                    <h3 class="footer-title">Наши социальные сети</h3>
+                    <ul class="footer-social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+    		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/main.js"></script>
+</footer>
+<!-- /Footer -

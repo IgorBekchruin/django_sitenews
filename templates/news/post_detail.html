@@ -1,0 +1,203 @@
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% load news_tags %}
+{% load static %}
+{% get_category as categories %}
+
+{% block title %}{{post.title}}{% endblock title %} 
+
+{% block bar %}
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h1>{{post.title}}</h1>
+                <div class="post-meta">
+                    <a class="post-category cat-2" href="category.html">{{post.category.title}}</a>
+                    <span class="post-date">{{post.created_at|date:"SHORT_DATE_FORMAT"}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Header -->
+
+{% endblock bar %}
+
+{% block main %}
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Post content -->
+            <div class="col-md-9">
+                <div class="section-row sticky-container">
+                    <div class="main-post">
+                        <h3>{{post.title}}</h3> 
+                            <figure class="figure-img">
+                                <img class="img-responsive" src="{{post.image.url}}" alt=""/>
+                            </figure>                           
+                        <p>{{post.text | safe}}</p>
+                    </div>
+					<!-- ad -->
+                    <div class="section-row text-center">
+                        <a href="#" style="display: inline-block;margin: auto;">
+                            <img class="img-responsive" src="{% static 'img/ad-2.jpg' %}" alt="">
+                        </a>
+                    </div>
+                    <!-- ad -->
+
+                    <!-- comments -->
+                    <div class="section-row">
+                        <div class="section-title">
+                            <h2>Комментарии:</h2>
+                        </div>
+                        <div class="post-comments">
+                            <!-- comment -->
+                            {% for c in comments %}
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="./img/avatar.png" alt=""/>
+                                </div>
+                                <div class="media-body">
+                                    <div class="media-heading">
+                                        <h4>{{ c.name }}</h4>
+                                        <span class="time">{{ c.created_at|date:"d M Y G i" }}</span>
+                                        <a href="#" class="reply">Reply</a>
+                                    </div>
+                                    <p>{{ c.text }}</p>
+
+                                    <!-- Вложеный комментарий -->
+                                    {% comment %} <div class="media">
+                                        <div class="media-left">
+                                            <img class="media-object" src="./img/avatar.png" alt=""/>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="media-heading">
+                                                <h4>John Doe</h4>
+                                                <span class="time">March 27, 2018 at 8:00 am</span>
+                                                <a href="#" class="reply">Reply</a>
+                                            </div>
+                                            <p>
+                                                Lorem ipsum dolor sit amet,
+                                                consectetur adipisicing elit,
+                                                sed do eiusmod tempor incididunt
+                                                ut labore et dolore magna
+                                                aliqua. Ut enim ad minim veniam,
+                                                quis nostrud exercitation
+                                                ullamco laboris nisi ut aliquip
+                                                ex ea commodo consequat.
+                                            </p>
+                                        </div>
+                                    </div> {% endcomment %}
+                                    <!-- /comment -->
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- /comment -->
+                        </div>
+                    </div>
+                    <!-- /comments -->
+
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary">Добавить комментарий</button>
+                    </form>
+                    
+                    <!-- reply -->
+                    <!-- <div class="section-row">
+                        <div class="section-title">
+                            <h2>Leave a reply</h2>
+                            <p>
+                                your email address will not be published.
+                                required fields are marked *
+                            </p>
+                        </div>
+                        <form class="post-reply">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span>Name *</span>
+                                        <input class="input" type="text" name="name"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span>Email *</span>
+                                        <input class="input" type="email" name="email"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span>Website</span>
+                                        <input class="input" type="text" name="website"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="input" name="message" placeholder="Message"></textarea>
+                                    </div>
+                                    <button class="primary-button">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div> -->
+                    <!-- /reply -->
+                </div>
+                <!-- /Post content -->
+            </div>
+            <!-- aside -->
+			<div class="col-md-3">
+				<!-- post widget -->
+				<div class="aside-widget">
+					<div class="section-title">
+						<h3>Популярные статьи</h3>
+					</div>
+                    {% for post in popular_post %}
+					<div class="post post-widget">
+						<a class="right-img" href="{{ post.get_absolute_url }}"><img src="{{ post.image.url }}" alt=""></a>
+						<div class="post-body">
+							<h5 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title}}</a></h5>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+				<!-- /post widget -->
+						
+				<!-- catagories -->
+                {% include 'category.html' %}
+                <!-- /catagories -->
+
+						
+				<!-- tags -->
+				<div class="aside-widget">
+                    <div class="section-title">
+                        <h2>Тэги:</h2>
+                    </div>
+							<div class="tags-widget">
+								<ul>
+									<li><a href="#">Chrome</a></li>
+									<li><a href="#">CSS</a></li>
+									<li><a href="#">Tutorial</a></li>
+									<li><a href="#">Backend</a></li>
+									<li><a href="#">JQuery</a></li>
+									<li><a href="#">Design</a></li>
+									<li><a href="#">Development</a></li>
+									<li><a href="#">JavaScript</a></li>
+									<li><a href="#">Website</a></li>
+								</ul>
+							</div>
+				</div>
+				<!-- /tags -->
+			</div>
+			<!-- /aside -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+{% endblock main %}

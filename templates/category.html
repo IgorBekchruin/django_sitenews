@@ -1,0 +1,16 @@
+{% load news_tags %}
+{% get_category as categories %}
+
+
+<div class="aside-widget">
+    <div class="section-title">
+        <h2>Категории:</h2>
+    </div>
+    <div class="category-widget">
+        <ul>
+            {% for c in categories %}
+            <li class="cat-3"><a href="{{ c.get_absolute_url }}">{{c.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
