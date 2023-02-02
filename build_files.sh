@@ -1,7 +1,7 @@
 # build_files.sh
 
 echo "Building project..."
-python3.9 -m pip install -r req.txt
+pip install -r requirements.txt
 
 echo "Make migration"
 python3.9 manage.py makemigrations --noinput
