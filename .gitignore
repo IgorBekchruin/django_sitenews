@@ -5,5 +5,5 @@ mysite/mysite/__pycache__/
 *.env
 bin/
 lib/
-.vscode/
+venv/
 *.slite3git
