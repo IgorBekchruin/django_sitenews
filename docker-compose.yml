@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  sitenews:
+    build:
+      context: .
+    env_file:
+      - .env
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres:12
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+
+  redis:
+    image: redis:7
+    container_name: sitenews_redis
+
+volumes:
+  postgres_data:
