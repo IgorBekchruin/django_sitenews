@@ -55,9 +55,7 @@ class PostDetailView(DetailView):
 
         form = CommentForm()
         post = get_object_or_404(Post, slug=slug)
-        popular_post = Post.objects.annotate(ncomment=Count("comments")).order_by(
-            "-ncomment"
-        )[:2]
+        popular_post = Post.objects.annotate(ncomment=Count("comments")).order_by("-ncomment")[:2]
         comments = post.comments.all()
 
         context["post"] = post
@@ -80,7 +78,6 @@ class PostDetailView(DetailView):
 
         if form.is_valid():
             username = request.user
-            print(username)
             text = form.cleaned_data["text"]
 
             comment = Comment.objects.create(username=username, text=text, post=post)
