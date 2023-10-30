@@ -45,8 +45,14 @@
             <!-- nav -->
             <div class="section-row">
                 <ul class="nav-aside-menu">
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="#">Войти</a> | <a href="#">Регистрация</a></li>
+
+                    {% if user.is_authenticated %}
+                        <h4>Привет, {{ user.username }} | <a href="{% url 'logout' %}">Выйти</a></h4>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Войти</a> | <a href="{% url 'register' %}">Регистрация</a></li>
+                    {% endif %}
+
+                    <li><a href="{% url 'home' %}">Главная</a></li>
                     <li><a href="contact.html">Обратная связь</a></li>
                     <li><a href="about.html">О проекте</a></li>
                 </ul>

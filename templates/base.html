@@ -10,11 +10,11 @@
 		<title>{% block title %}{% endblock title %}</title>
 
 		<!-- Google font -->
-		<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet">
 
 		<!-- Bootstrap -->
 		<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
-		
+
 
 		<!-- Font Awesome Icon -->
 		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
@@ -27,14 +27,14 @@
 
 		<!-- Header -->
     	{% include 'header.html' %}
-	
+
 		{% block bar %}
 		{% endblock bar %}
 		<!-- /Header -->
 
-    	{% block main %}    
+    	{% block main %}
     	{% endblock main %}
-		
+
 		<!-- Footer -->
 		{% include 'footer.html' %}
 		<!-- /Footer -->

@@ -1,8 +1,9 @@
 from django import template
+
 from news.models import Post
 
-
 register = template.Library()
+
 
 @register.simple_tag()
 def get_last_post():

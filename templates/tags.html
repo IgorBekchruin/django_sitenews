@@ -1,0 +1,17 @@
+{% load list_tags %}
+{% get_list_tags as tags %}
+
+
+<div class="aside-widget">
+
+    <div class="section-title">
+        <h2>Тэги:</h2>
+    </div>
+    <div class="tags-widget">
+        <ul>
+            {% for tag in tags %}
+                <li><a href="{% url 'post_by_tags' tag.slug %}">{{ tag.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

@@ -1,19 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Категория{% endblock title %}
+{% block title %}Тэги{% endblock title %}
 
 {% block bar %}
-<!-- Page Header -->
-<div class="page-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10">
-                <h1>Категория: <a href="{{ cat.get_absolute_url}}">{{ cat.title}}</a></h1>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /Page Header -->
+
 {% endblock bar %}
 
 {% block main %}
@@ -26,7 +16,7 @@
             <div class="col-md-9">
                 <div class="row">
                     <!-- post -->
-                    {% for p in post %}
+                    {% for p in posts %}
                     <div class="col-md-12">
                         <div class="post post-row">
                             <a class="post-img" href="{{ p.get_absolute_url }}"><img src="{{ p.image.url }}" alt=""/></a>
@@ -55,8 +45,12 @@
                 {% include 'category.html' %}
                 <!-- /catagories -->
 
+                <!-- tags -->
+                {% include 'tags.html' %}
+                <!-- /tags -->
+
                 <!-- archive -->
-                <!-- <div class="aside-widget">
+                <div class="aside-widget">
                     <div class="section-title">
                         <h2>Архив:</h2>
                     </div>
@@ -67,7 +61,7 @@
                             <li><a href="#">Mar 2018</a></li>
                         </ul>
                     </div>
-                </div> -->
+                </div>
                 <!-- /archive -->
             </div>
         </div>
@@ -77,4 +71,3 @@
 </div>
 <!-- /section -->
 {% endblock main %}
-

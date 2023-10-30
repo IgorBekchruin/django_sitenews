@@ -2,21 +2,31 @@
 {% load crispy_forms_tags %}
 
 {% block main %}
-<div class="card">
-<div class="card-body">
-<h4 class="card-title">Log in to your account</h4>
+<div class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="card">
+                <div class="card-body">
+                <h4 class="card-title">Заполните форму, чтобы войти на сайт</h4>
 
 
-<form action="{% url 'login' %}" method="post">
-{% csrf_token %}
-<input type="hidden" name="next" value="{{ next }}">
+                <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
 
-{{ form|crispy }}
+                {{ form|crispy }}
 
-<button type="submit" class="btn btn-primary btn-block">Log in</button>
-</form>
+                <h5 class="card-title">Забыли пароль? <a href="{% url 'password_reset' %}">Восстановить</a></h5>
+                <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                </form>
 
-<a href="{% url 'password_reset' %}">Изменить пароль</a>
-</div>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
 </div>
 {% endblock %}

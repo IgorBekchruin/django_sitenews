@@ -1,6 +1,5 @@
-{% extends 'base.html' %} 
-{% load static %}
-{% block title %}Главная{% endblock title %} 
+{% extends 'base.html' %}
+{% block title %}Главная{% endblock title %}
 
 {% block main %}
 <!-- section -->
@@ -99,36 +98,10 @@
                 <!-- /catagories -->
 
                 <!-- tags -->
-                <div class="aside-widget">
-						<!-- ad -->
-						<div class="aside-widget text-center">
-							<a href="#" style="display: inline-block;margin: auto;">
-								<img class="img-responsive" src="{% static 'img/ad-1.jpg' %}" alt="">
-							</a>
-						</div>
-						<!-- /ad -->
-
-
-                    <div class="section-title">
-                        <h2>Тэги:</h2>
-                    </div>
-                    <div class="tags-widget">
-                        <ul>
-                            <li><a href="#">Chrome</a></li>
-                            <li><a href="#">CSS</a></li>
-                            <li><a href="#">Tutorial</a></li>
-                            <li><a href="#">Backend</a></li>
-                            <li><a href="#">JQuery</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">JavaScript</a></li>
-                            <li><a href="#">Website</a></li>
-                        </ul>
-                    </div>
-                </div>
+                {% include 'tags.html' %}
                 <!-- /tags -->
                 <!-- archive -->
-				<div class="aside-widget">
+				<!-- <div class="aside-widget">
                     <div class="section-title">
                         <h2>Архив</h2>
                     </div>
@@ -139,7 +112,7 @@
                             <li><a href="#">2020</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 <!-- /archive -->
             </div>
         </div>
