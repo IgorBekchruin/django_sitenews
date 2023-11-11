@@ -13,7 +13,7 @@ Frontend:
 * Bootstrap
 
 DB:
-* Posregresql
+* PostgreSQL
 
 Tools:
 * Redis
