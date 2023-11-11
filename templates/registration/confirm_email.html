@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+<div class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div  class="card">
+                    <div  class="card-body">
+                        <h4  class="card-title">Письмо подтверждения отправлено!</h4>
+
+                        <p>На ваш адрес электронной почты было отправлено письмо с подтверждением. Пожалуйста, проверьте свою электронную почту и нажмите на ссылку подтверждения, чтобы завершить регистрацию.
+                            Если письмо не пришло, проверьте папку спам.</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

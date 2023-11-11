@@ -7,4 +7,5 @@ bin/
 lib/
 venv/
 *.slite3git
-.idea
+.idea/
+.vscode/
